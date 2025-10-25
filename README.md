@@ -1,15 +1,24 @@
-# 🌐 Student Projects Hub
+# 🌐 Wimbledon Learning Centre — Student Projects Hub
 
 Welcome! 👋  
-This repository is where all student projects and websites are hosted.  
-Each folder belongs to a different student or project, and will be used to share work publicly or for class viewing.
+This repository is managed by **Wimbledon Learning Centre** and is used to **host student websites and projects**.  
+All projects you see here were created by students as part of their learning journey.
 
 ---
 
-## 📁 How It Works
+## 📖 About
 
-- Each student (or team) gets their **own folder** in this repo.  
-- Inside that folder, you can upload your **website files** (HTML, CSS, JS, images, etc.).  
-- Once your work is pushed here, it can be **hosted online** through GitHub Pages!
+This space is for **showcasing work**, not editing or submitting files.  
+Each project you find here represents a student’s creativity, effort, and progress in coding and web development.
 
-Example structure:
+You’re welcome to:
+- Browse through different student projects.
+- View live websites hosted through GitHub Pages.
+- Get inspired by the work of others.
+
+---
+
+## 🚀 Viewing Projects
+
+Each student or project has its own folder in this repository.  
+To view a project, simply open its folder and click the **“View on GitHub Pages”** link — or visit the following format:
