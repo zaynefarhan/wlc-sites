@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-header {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: 1.4rem;
+      color: #333;
+    }
+
+    .option {
+      background-color: #f4f4f4;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .option:hover {
+      background-color: #e0e0e0;
+    }
+
+    .option.selected {
+      border-color: #667eea;
+      background-color: #e8eaff;
+    }
+
+    button {
+      background-color: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #556cd6;
+    }
+
+    .result {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #444;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #00ff00;
+      position: absolute;
+      top: 5%;
+    }
+
+    footer {
+      color: #0077ff;
+      position: absolute;
+      top: 95%;
+    }
+
+    img {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dandy's World Quiz</h1>
+
+  <div class="quiz-container" id="quiz">
+    <div class="quiz-header">
+      <h2 id="question">Question text</h2>
+      <div id="options"></div>
+    </div>
+    <button id="submit">Submit</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <img style="right: 70%;" src="https://media1.tenor.com/m/JHOdPZ4N7bMAAAAd/gourdy-dandys-world.gif" alt="">
+  <img style="right: 10%;" width="300" src="https://media.tenor.com/fzPPcxAwY6QAAAAj/yatta-yatta-dandys-world.gif" alt="">
+
+  <footer>Made by Annabelle</footer>
+
+  <script>
+    const quizData = [
+      {
+        question: "What is CG5's new song?",
+        options: ["gourdy days", "locked away", "when will this nightmare end", "pumpkin feeds on"],
+        answer: "locked away"
+      },
+      {
+        question: "how old is gourdy?",
+        options: ["4", "8", "11", "5"],
+        answer: "8"
+      },
+      {
+        question: "who is gourdys friend?",
+        options: ["pumply", "toodles", "rootles", "tralalao tralala"],
+        answer: "toodles"
+      },
+      {
+        question: "what is gourdys backstory?",
+        options: ["he ran away", "he was in jail", "his parents died", "the parents abandond him"],
+        answer: "the parents abandond him"
+      },
+      {
+        question: "what is gourdy?",
+        options: ["tomato", "brocoly", "watermelon", "pumpkin"],
+        answer: "pumpkin"
+      },
+      {
+        question: "What is gourdys trinket?",
+        options: ["memory charm", "sweet jar", "pic of him", "basket"],
+        answer: "memory charm"
+      },
+      {
+        question: "how fast is the twisted?",
+        options: ["1/10", "5/10", "10/10", "8/10"],
+        answer: "10/10"
+      },
+      {
+        question: "What do you need to give gourdy?",
+        options: ["attention", "items", "his parents", "toodles"],
+        answer: "items"
+      },
+      {
+        question: "what is gourdy?",
+        options: ["common", "uncommon", "main character", "rare"],
+        answer: "main character"
+      },
+      {
+        question: "what does gourdy do?",
+        options: ["feels pain", "feels sad", "feels depressed", "happy"],
+        answer: "feels sad"
+      },
+      {
+        question: "what is gourdys ability?",
+        options: ["gives everyone a sweet", "heals himself", "gives a random effect to all players", "heals everyone on 1 or 2 hearts"],
+        answer: "gives a random effect to all players"
+      },
+      {
+        question: "how is gourdys abbility similar to toodles?",
+        options: ["they both give a random effect", "they are simmilar age", "idk idc", "67676767"],
+        answer: "they both give a random effect"
+      },
+      
+
+
+
+
+
+
+
+      {
+        question: "who is the best halloween toon?",
+        options: ["gourdy","eclipce", "yatta new skin", "ribecca"],
+        answer: "eclipce"
+      },
+      {
+        question: "what is the best new skin?",
+        options: ["yattas", "blots", "eclipce", "gourdy"],
+        answer: "yattas"
+      },
+      {
+        question: "what is the 2nd halloween skin yatta got given?",
+        options: ["guess what i eat", "she got only one skin", "SHE GOT NONE", "she got like 1000"],
+        answer: "she got only one skin"
+      },
+      {
+        question: "what is my fav yatta skin?",
+        options: ["guess what i eat", "coca cones", "april fools", "blossom buddy"],
+        answer: "april fools"
+      },
+      {
+        question: "who is the dis of the hallowwen event?",
+        options: ["gourdy and soulvester", "soulvester and ribecca", "eclipce and gourdy", "all of the above"],
+        answer: "eclipce and gourdy"
+      },
+      {
+        question: "what is zaynes fav food?",
+        options: ["brocoli with cholate cake icing", "none", "idk idc", "STEEL A BRAINROT MEWIN"],
+        answer: "STEEL A BRAINROT MEWIN"
+      },
+      {
+        question: "who is the circus trio?",
+        options: ["blot vee looey", "looey razzle and dazzle yatta", "idk idc", "blot looey yatta"],
+        answer: "blot looey yatta"
+      },
+      {
+        question: "yatta and gourdy have a close bond out of 10 in my mind?",
+        options: ["0/10", "8/10", "10/10", "9/10"],
+        answer: "9/10"
+      },
+    ];
+
+    const questionEl = document.getElementById('question');
+    const optionsEl = document.getElementById('options');
+    const submitBtn = document.getElementById('submit');
+    const resultEl = document.getElementById('result');
+                    
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedOption = null;
+
+    function loadQuestion() {
+      const current = quizData[currentQuestion];
+      questionEl.textContent = current.question;
+      optionsEl.innerHTML = '';
+      resultEl.textContent = '';
+      selectedOption = null;
+
+      current.options.forEach(option => {
+        const div = document.createElement('div');
+        div.classList.add('option');
+        div.textContent = option;
+        div.addEventListener('click', () => {
+          document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+          div.classList.add('selected');
+          selectedOption = option;
+        });
+        optionsEl.appendChild(div);
+      });
+    }
+
+    submitBtn.addEventListener('click', () => {
+      if (!selectedOption) {
+        alert('Please select an option!');
+        return;
+      }
+
+      const correct = quizData[currentQuestion].answer;
+      if (selectedOption === correct) {
+        score++;
+      }
+
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    function showResult() {
+      quiz.innerHTML = `
+        <h2 class="result">You scored ${score} out of ${quizData.length} 🎉</h2>
+        <button onclick="location.reload()">Play Again</button>
+      `;
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+</html>
